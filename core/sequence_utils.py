@@ -76,7 +76,9 @@ def generate_gc_plot(sequences_list):
     plt.tight_layout()
 
     plot_filename = 'gc_chart.png'
-    plot_path = os.path.join('static', 'plots', plot_filename) 
+    plot_path = os.path.join('static', 'plots', plot_filename)
+    import os
+    os.makedirs('static/plots', exist_ok=True)  # Membuat folder otomatis jika belum ada 
     plt.savefig(plot_path, dpi=300) # dpi=300 agar gambar High Resolution
     plt.close()
     
