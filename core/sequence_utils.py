@@ -77,10 +77,10 @@ def generate_gc_plot(sequences_list):
     plt.tight_layout()
 
     plot_filename = 'gc_chart.png'
+    os.makedirs(os.path.join('static', 'plots'), exist_ok=True) # Pindahkan ke sini, HAPUS import os
     plot_path = os.path.join('static', 'plots', plot_filename)
-    import os
-    os.makedirs('static/plots', exist_ok=True)  # Membuat folder otomatis jika belum ada 
-    plt.savefig(plot_path, dpi=300) # dpi=300 agar gambar High Resolution
+    
+    plt.savefig(plot_path, dpi=300) 
     plt.close()
     
     return plot_filename
@@ -91,7 +91,6 @@ def generate_csv(sequences_list):
     """
     Fungsi untuk mengekspor data hasil analisis ke file CSV menggunakan pandas.
     """
-    # Kita rapikan datanya dulu agar saat dibuka di Excel/CSV terlihat cantik
     flat_data = []
     for seq in sequences_list:
         flat_data.append({
@@ -105,11 +104,14 @@ def generate_csv(sequences_list):
             'C': seq['freq']['C']
         })
         
-    # Mengubah list menjadi DataFrame (Tabel Pandas)
     df = pd.DataFrame(flat_data)
     
-    # Menyimpan file CSV ke folder static/uploads
+    # --- PERBAIKAN DI FUNGSI generate_csv ---
     csv_filename = 'hasil_skrining_termofilik.csv'
+    
+    # Tambahkan ini agar folder uploads dibuat otomatis jika belum ada
+    os.makedirs(os.path.join('static', 'uploads'), exist_ok=True) 
+    
     csv_path = os.path.join('static', 'uploads', csv_filename)
     df.to_csv(csv_path, index=False)
     
