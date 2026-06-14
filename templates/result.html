@@ -6,7 +6,7 @@
     <h2 class="fw-bold" style="color: #2c5364;">Laporan Skrining Termofilik</h2>
 </div>
 
-<div class="card border-0 mb-5 animate-slide-up delay-1">
+<div class="card border-0 shadow-sm mb-5 animate-slide-up delay-1 card-hover">
     <div class="card-header bg-white border-bottom border-2 py-3">
         <h5 class="mb-0 fw-bold text-secondary"><i class="fa-solid fa-trophy text-warning me-2"></i> Top 3 Kandidat Terbaik</h5>
     </div>
@@ -36,13 +36,13 @@
     </div>
 </div>
 
-<div class="card border-0 mb-5 p-4 text-center animate-slide-up delay-2">
+<div class="card border-0 shadow-sm mb-5 p-4 text-center animate-slide-up delay-2 card-hover">
     <h5 class="fw-bold text-secondary text-start mb-4"><i class="fa-solid fa-chart-column text-info me-2"></i> Visualisasi Data</h5>
     <img src="{{ url_for('static', filename='plots/' + plot_file) }}" alt="Grafik GC" class="img-fluid rounded shadow-sm mx-auto" style="max-height: 500px;">
 </div>
 
 <div class="d-flex justify-content-center gap-3 mb-5 animate-slide-up delay-3">
-    <a href="/" class="btn btn-outline-secondary px-4 py-2 fw-bold"><i class="fa-solid fa-arrow-left me-2"></i> Analisis Ulang</a>
-    <a href="{{ url_for('static', filename='uploads/' + csv_file) }}" class="btn btn-biotech px-4 py-2" download><i class="fa-solid fa-file-csv me-2"></i> Unduh Laporan (CSV)</a>
+    <a href="/" class="btn btn-outline-secondary px-4 py-2 fw-bold rounded-pill"><i class="fa-solid fa-arrow-left me-2"></i> Analisis Ulang</a>
+    <a href="{{ url_for('static', filename='uploads/' + csv_file) }}" class="btn btn-biotech px-4 py-2 rounded-pill" download><i class="fa-solid fa-file-csv me-2"></i> Unduh Laporan (CSV)</a>
 </div>
 {% endblock %}

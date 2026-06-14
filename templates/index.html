@@ -3,7 +3,7 @@
 {% block content %}
 <div class="row justify-content-center animate-slide-up">
     <div class="col-lg-8">
-        <div class="card border-0">
+        <div class="card border-0 card-hover">
             <div class="card-body p-5">
                 <div class="text-center mb-4">
                     <div class="d-inline-block bg-light rounded-circle p-4 mb-3 shadow-sm">
@@ -19,12 +19,31 @@
                         <h6 class="fw-bold text-secondary">Pilih File Sekuens Anda</h6>
                         <input class="form-control mt-3" type="file" name="file" accept=".fasta,.fas,.txt,.fastq" required>
                     </div>
-                    <button type="submit" class="btn btn-biotech btn-lg w-100 rounded-pill py-3">
-                        <i class="fa-solid fa-gears me-2"></i> Jalankan Pipeline Analisis
+                    
+                    <button type="submit" class="btn btn-biotech btn-lg w-100 rounded-pill py-3 shadow-sm" id="submitBtn" onclick="showLoading()">
+                        <span id="btnText"><i class="fa-solid fa-gears me-2"></i> Jalankan Pipeline Analisis</span>
+                        <span id="btnLoading" class="d-none">
+                            <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                            Memproses DNA... Harap Tunggu...
+                        </span>
                     </button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    function showLoading() {
+        // Sembunyikan teks asli
+        document.getElementById('btnText').classList.add('d-none');
+        // Tampilkan animasi loading berputar
+        document.getElementById('btnLoading').classList.remove('d-none');
+        
+        // Sedikit meredupkan tombol agar terlihat sedang diproses
+        const btn = document.getElementById('submitBtn');
+        btn.style.opacity = '0.8';
+        btn.style.cursor = 'wait';
+    }
+</script>
 {% endblock %}
