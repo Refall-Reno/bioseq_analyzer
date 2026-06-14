@@ -35,12 +35,8 @@
 
 <script>
     function showLoading() {
-        // Sembunyikan teks asli
         document.getElementById('btnText').classList.add('d-none');
-        // Tampilkan animasi loading berputar
         document.getElementById('btnLoading').classList.remove('d-none');
-        
-        // Sedikit meredupkan tombol agar terlihat sedang diproses
         const btn = document.getElementById('submitBtn');
         btn.style.opacity = '0.8';
         btn.style.cursor = 'wait';

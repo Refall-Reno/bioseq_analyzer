@@ -1,79 +1,48 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="d-flex justify-content-between align-items-center mb-5 animate-slide-up">
-    <div>
-        <span class="badge bg-success mb-2 px-3 py-2"><i class="fa-solid fa-check-circle me-1"></i> PIPELINE COMPLETE</span>
-        <h1 class="sci-fi-title fw-bold" style="font-size: 2.5rem;">THERMOPHILIC GENOME MAP</h1>
-        <p class="text-muted font-mono">SPECIMEN TYPE: CRANIAL FRAGMENT [FASTA/FASTQ INFERENCE]</p>
+<div class="text-center mb-5 animate-slide-up">
+    <span class="badge bg-success mb-2 px-3 py-2"><i class="fa-solid fa-check-circle me-1"></i> Analisis Selesai</span>
+    <h2 class="fw-bold" style="color: #2c5364;">Laporan Skrining Termofilik</h2>
+</div>
+
+<div class="card border-0 shadow-sm mb-5 animate-slide-up delay-1 card-hover">
+    <div class="card-header bg-white border-bottom border-2 py-3">
+        <h5 class="mb-0 fw-bold text-secondary"><i class="fa-solid fa-trophy text-warning me-2"></i> Top 3 Kandidat Terbaik</h5>
     </div>
-    <div class="font-mono text-end d-none d-md-block">
-        <p class="mb-0 text-muted">RISK LEVEL: MEDIUM</p>
-        <p class="mb-0 text-muted">PRESERVATION INDEX: 87%</p>
+    <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-light text-secondary">
+                <tr>
+                    <th class="ps-4">Peringkat</th>
+                    <th>ID Sekuens</th>
+                    <th>Panjang (bp)</th>
+                    <th>Status GC Content</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for seq in top_3 %}
+                <tr>
+                    <td class="ps-4"><span class="badge rounded-circle bg-primary p-2" style="width: 30px; height: 30px;">{{ loop.index }}</span></td>
+                    <td class="font-mono text-dark fw-bold">{{ seq.id }}</td>
+                    <td class="text-muted">{{ seq.length }} bp</td>
+                    <td>
+                        <span class="badge bg-success fs-6">{{ seq.gc_content }} %</span>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 </div>
 
-<div class="row g-4 mb-5">
-    
-    <div class="col-xl-4 col-lg-5 animate-slide-up delay-1">
-        <div class="row g-4">
-            
-            <div class="col-12">
-                <div class="sci-fi-panel card-hover p-4">
-                    <h5 class="sci-fi-title mb-4"><i class="fa-solid fa-trophy text-warning me-2"></i>TOP 3 CANDIDATE_ISOLATES</h5>
-                    <div class="table-responsive font-mono" style="font-size: 0.9rem;">
-                        <table class="table table-dark table-hover align-middle table-borderless mb-0">
-                            <thead class="text-muted border-bottom border-secondary">
-                                <tr>
-                                    <th>RANK</th>
-                                    <th>SEQ_ID</th>
-                                    <th>GC%</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for seq in top_3 %}
-                                <tr>
-                                    <td><span class="badge rounded-circle bg-primary p-2" style="width: 30px; height: 30px; line-height: 1;">{{ loop.index }}</span></td>
-                                    <td class="text-light fw-bold text-truncate" style="max-width: 150px;" title="{{ seq.id }}">{{ seq.id }}</td>
-                                    <td>
-                                        <span class="badge bg-success fs-6 text-black">{{ seq.gc_content }} %</span>
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-12">
-                <div class="sci-fi-panel p-4 font-mono" style="font-size: 0.9rem;">
-                    <p class="text-muted mb-2">THERMAL ADAPTATION: <span class="text-light fw-bold">PARTIALLY DEGRADED</span></p>
-                    <p class="text-muted mb-4">NEUTRAL COORDINATION: <span class="text-info fw-bold">STABLE</span></p>
-                    <a href="{{ url_for('static', filename='uploads/' + csv_file) }}" class="btn btn-biotech w-100 p-3 rounded-pill" download>
-                        <i class="fa-solid fa-file-csv me-2"></i> DOWNLOAD FULL CSV REPORT
-                    </a>
-                </div>
-            </div>
+<div class="card border-0 shadow-sm mb-5 p-4 text-center animate-slide-up delay-2 card-hover">
+    <h5 class="fw-bold text-secondary text-start mb-4"><i class="fa-solid fa-chart-column text-info me-2"></i> Visualisasi Data</h5>
+    <img src="{{ url_for('static', filename='plots/' + plot_file) }}" alt="Grafik GC" class="img-fluid rounded shadow-sm mx-auto" style="max-height: 500px;">
+</div>
 
-            <div class="col-12 text-center mt-4">
-                <a href="/" class="btn btn-outline-secondary px-5 py-2 fw-bold rounded-pill font-mono"><i class="fa-solid fa-arrow-left me-2"></i> NEW ANALYSIS</a>
-            </div>
-
-        </div>
-    </div>
-
-    <div class="col-xl-8 col-lg-7 animate-slide-up delay-2">
-        <div class="sci-fi-panel p-4 text-center h-100 card-hover">
-            <h5 class="sci-fi-title mb-4 text-start"><i class="fa-solid fa-chart-column text-info me-2"></i>VISUAL DATA_CORE [GC% DISTRIBUTION]</h5>
-            
-            <div class="p-3 rounded" style="background-color: rgba(0,0,0,0.3); box-shadow: 0 0 30px rgba(0, 241, 212, 0.1);">
-                <img src="{{ url_for('static', filename='plots/' + plot_file) }}" alt="Grafik GC" class="img-fluid rounded shadow-sm mx-auto" style="max-height: 550px;">
-            </div>
-            
-            <p class="text-muted font-mono mt-3 opacity-75">NOTE: AI_ANALYTICS GENERATED DATA INFERENCE_098.</p>
-        </div>
-    </div>
-
+<div class="d-flex justify-content-center gap-3 mb-5 animate-slide-up delay-3">
+    <a href="/" class="btn btn-outline-secondary px-4 py-2 fw-bold rounded-pill"><i class="fa-solid fa-arrow-left me-2"></i> Analisis Ulang</a>
+    <a href="{{ url_for('static', filename='uploads/' + csv_file) }}" class="btn btn-biotech px-4 py-2 rounded-pill" download><i class="fa-solid fa-file-csv me-2"></i> Unduh Laporan (CSV)</a>
 </div>
 {% endblock %}
