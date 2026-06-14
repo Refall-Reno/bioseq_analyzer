@@ -1,10 +1,11 @@
 # core/sequence_utils.py
 from Bio import SeqIO
+import os
 import matplotlib
 # Menggunakan 'Agg' agar Matplotlib bisa berjalan di background Flask tanpa error GUI
 matplotlib.use('Agg') 
 import matplotlib.pyplot as plt
-import os
+
 
 def process_fasta(file_path):
     """
