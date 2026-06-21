@@ -1,0 +1,90 @@
+:root {
+    --primary-color: #11998e;
+    --secondary-color: #38ef7d;
+    --dark-bg: #121619;
+    --dark-card: #1d2125;
+}
+
+body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-biotech {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-biotech:hover {
+    background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(17, 153, 142, 0.4);
+}
+
+.card-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+}
+
+.animate-slide-up {
+    animation: slideUpFade 0.6s ease forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+
+@keyframes slideUpFade {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.font-mono {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+body.dark-mode, 
+[data-bs-theme="dark"] body {
+    background-color: var(--dark-bg) !important; 
+    color: #e6edf3 !important; 
+}
+
+body.dark-mode .card, 
+body.dark-mode .list-group-item,
+body.dark-mode footer,
+[data-bs-theme="dark"] .card {
+    background-color: var(--dark-card) !important;
+    border-color: #3d444d !important;
+}
+
+body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, 
+body.dark-mode h4, body.dark-mode h5, body.dark-mode h6, 
+body.dark-mode p, body.dark-mode li,
+body.dark-mode .text-secondary,
+body.dark-mode .text-muted,
+body.dark-mode .text-dark {
+    color: #e6edf3 !important;
+}
+
+body.dark-mode .upload-zone {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    border-color: var(--secondary-color) !important;
+}
+
+body.dark-mode .bg-white {
+    background-color: var(--dark-card) !important;
+}
+
+body.dark-mode .border-warning {
+    border-color: rgba(255, 193, 7, 0.3) !important;
+}
