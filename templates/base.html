@@ -53,26 +53,32 @@
 
     <script>
         const toggleBtn = document.getElementById('darkModeToggle');
-        const htmlElement = document.documentElement; 
-        const bodyElement = document.getElementById('bodyElement'); // Ambil body
-        const icon = toggleBtn.querySelector('i');
+const htmlElement = document.documentElement; 
+const bodyElement = document.getElementById('bodyElement');
+const icon = toggleBtn.querySelector('i');
 
-        toggleBtn.addEventListener('click', () => {
-            if (htmlElement.getAttribute('data-bs-theme') === 'dark') {
-                // Mode Terang
-                htmlElement.setAttribute('data-bs-theme', 'light');
-                bodyElement.classList.remove('dark-mode'); // Hapus class dark-mode dari body
-                icon.classList.replace('fa-sun', 'fa-moon');
-                icon.classList.replace('text-warning', 'text-light');
-            } else {
-                // Mode Gelap
-                htmlElement.setAttribute('data-bs-theme', 'dark');
-                bodyElement.classList.add('dark-mode'); // Tambahkan class dark-mode ke body
-                icon.classList.replace('fa-moon', 'fa-sun');
-                icon.classList.remove('text-light');
-                icon.classList.add('text-warning');
-            }
-        });
+const setMode = (mode) => {
+    if (mode === 'dark') {
+        htmlElement.setAttribute('data-bs-theme', 'dark');
+        bodyElement.classList.add('dark-mode');
+        icon.classList.replace('fa-moon', 'fa-sun');
+        icon.classList.add('text-warning');
+    } else {
+        htmlElement.setAttribute('data-bs-theme', 'light');
+        bodyElement.classList.remove('dark-mode');
+        icon.classList.replace('fa-sun', 'fa-moon');
+        icon.classList.remove('text-warning');
+    }
+    localStorage.setItem('theme', mode);
+}
+
+const savedTheme = localStorage.getItem('theme') || 'light';
+setMode(savedTheme);
+
+toggleBtn.addEventListener('click', () => {
+    const currentMode = htmlElement.getAttribute('data-bs-theme');
+    setMode(currentMode === 'dark' ? 'light' : 'dark');
+});
     </script>
 </body>
 </html>
