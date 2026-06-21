@@ -12,11 +12,11 @@
             Analisis <span class="text-success">GC Content</span> dari File Sekuens DNA.
         </h1>
         
-        <p class="text-muted fs-5 mb-4">
+        <p class="fs-5 mb-4" style="opacity: 0.85;">
             Aplikasi bioinformatika berbasis web yang dirancang untuk mengevaluasi stabilitas termal dari sampel lingkungan. Pengguna cukup mengunggah data spesimen, kemudian sistem akan secara otomatis menjalankan rangkaian analisis komputasi berikut:
         </p>
         
-        <ul class="list-unstyled text-muted mb-4 fs-6">
+        <ul class="list-unstyled mb-4 fs-6" style="opacity: 0.85;">
             <li class="mb-3"><i class="fa-solid fa-check-circle text-success me-2 fs-5 align-middle"></i> Ekstraksi dan pembacaan file <strong>FASTA/FASTQ</strong>.</li>
             <li class="mb-3"><i class="fa-solid fa-check-circle text-success me-2 fs-5 align-middle"></i> Kalkulasi frekuensi nukleotida (A, T, G, C).</li>
             <li class="mb-3"><i class="fa-solid fa-check-circle text-success me-2 fs-5 align-middle"></i> Pemeringkatan kandidat berdasarkan persentase GC tertinggi.</li>
@@ -25,37 +25,28 @@
     </div>
 
     <div class="col-lg-6">
-        <div class="card border-0 shadow-lg card-hover bg-transparent" style="border-radius: 20px;">
+        <div class="card border-0 shadow-lg card-hover" style="border-radius: 20px; background-color: var(--card-bg);">
             <div class="card-body p-5 border border-secondary border-opacity-25 rounded-4">
                 <div class="text-center mb-4">
                     <div class="d-inline-block rounded-circle p-4 mb-3 shadow-sm" style="background-color: rgba(17, 153, 142, 0.1);">
                         <i class="fa-solid fa-dna text-primary fa-3x"></i>
                     </div>
                     <h4 class="fw-bold">Input Data Sekuens</h4>
-                    <p class="text-muted small">Format didukung: .fasta, .fas, .txt, .fastq</p>
+                    <p class="small" style="opacity: 0.7;">Format didukung: .fasta, .fas, .txt, .fastq</p>
                 </div>
                 
                 <form action="/" method="POST" enctype="multipart/form-data">
-    <div class="upload-zone border border-2 border-primary border-opacity-50 rounded-4 p-4 text-center mb-4" style="border-style: dashed !important; background-color: rgba(17, 153, 142, 0.05);">
-        <i class="fa-solid fa-cloud-arrow-up text-primary opacity-75 fa-3x mb-3"></i>
-        <h6 class="fw-bold text-secondary mb-3">Pilih File Spesimen Anda</h6>
-        <input class="form-control" type="file" name="file" accept=".fasta,.fas,.txt,.fastq" required>
-        
-        <div class="mt-4 p-3 rounded-3 bg-white shadow-sm border border-warning border-opacity-50 text-start">
-            <p class="text-muted mb-0" style="font-size: 0.85rem; line-height: 1.5;">
-                <i class="fa-solid fa-circle-info text-warning me-2 fs-6"></i> <strong>Catatan Penting:</strong> Pastikan file Anda berisi <strong>lebih dari satu sekuens (Multi-FASTA)</strong> agar sistem dapat membandingkan dan mencari Top 3 kandidat terbaik.
-            </p>
-        </div>
-        </div>
-    
-    <button type="submit" class="btn btn-biotech btn-lg w-100 rounded-pill py-3 shadow-sm" id="submitBtn" onclick="showLoading()">
-        <span id="btnText"><i class="fa-solid fa-gears me-2"></i> Jalankan Analisis</span>
-        <span id="btnLoading" class="d-none">
-            <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-            Memproses DNA...
-        </span>
-    </button>
-</form>
+                    <div class="upload-zone border border-2 border-primary border-opacity-50 rounded-4 p-4 text-center mb-4" style="border-style: dashed !important; background-color: rgba(17, 153, 142, 0.05);">
+                        <i class="fa-solid fa-cloud-arrow-up text-primary opacity-75 fa-3x mb-3"></i>
+                        <h6 class="fw-bold text-secondary mb-3">Pilih File Spesimen Anda</h6>
+                        <input class="form-control" type="file" name="file" accept=".fasta,.fas,.txt,.fastq" required>
+                        
+                        <div class="mt-4 p-3 rounded-3 shadow-sm border border-warning border-opacity-50 text-start bg-transparent" style="background-color: rgba(255, 193, 7, 0.1) !important;">
+                            <p class="mb-0" style="font-size: 0.85rem; line-height: 1.5; opacity: 0.9;">
+                                <i class="fa-solid fa-circle-info text-warning me-2 fs-6"></i> <strong>Catatan Penting:</strong> Pastikan file Anda berisi <strong>lebih dari satu sekuens (Multi-FASTA)</strong> agar sistem dapat membandingkan dan mencari Top 3 kandidat terbaik.
+                            </p>
+                        </div>
+                    </div>
                     
                     <button type="submit" class="btn btn-biotech btn-lg w-100 rounded-pill py-3 shadow-sm" id="submitBtn" onclick="showLoading()">
                         <span id="btnText"><i class="fa-solid fa-gears me-2"></i> Jalankan Analisis</span>
