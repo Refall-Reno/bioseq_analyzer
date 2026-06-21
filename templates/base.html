@@ -10,14 +10,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧬</text></svg>">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f4f7f6;
-            color: #2c3e50;
-            transition: background-color 0.5s ease, color 0.5s ease;
-        }
+        /* Sisa styling navbar biarkan di sini, tapi WARNA BODY KITA HAPUS */
         .navbar {
             background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
@@ -26,44 +23,9 @@
             font-weight: 700;
             letter-spacing: 1px;
         }
-        .font-mono {
-            font-family: 'JetBrains Mono', monospace;
-        }
-        .card {
-            border-radius: 15px;
-            background-color: white;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        }
-        .btn-biotech {
-            background: linear-gradient(135deg, #11998e, #38ef7d);
-            color: white;
-            font-weight: 600;
-            border: none;
-            transition: all 0.3s ease;
-        }
-        .btn-biotech:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(56, 239, 125, 0.4);
-            color: white;
-        }
-        
-        .card-hover {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .card-hover:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 24px rgba(0,0,0,0.15) !important;
-        }
-
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
-        .animate-slide-up { opacity: 0; animation: slideUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
-        .delay-1 { animation-delay: 0.2s; }
-        .delay-2 { animation-delay: 0.4s; }
-        .delay-3 { animation-delay: 0.6s; }
     </style>
 </head>
-<body>
+<body id="bodyElement">
 
     <nav class="navbar navbar-expand-lg navbar-dark py-3">
         <div class="container">
@@ -92,15 +54,20 @@
     <script>
         const toggleBtn = document.getElementById('darkModeToggle');
         const htmlElement = document.documentElement; 
+        const bodyElement = document.getElementById('bodyElement'); // Ambil body
         const icon = toggleBtn.querySelector('i');
 
         toggleBtn.addEventListener('click', () => {
             if (htmlElement.getAttribute('data-bs-theme') === 'dark') {
+                // Mode Terang
                 htmlElement.setAttribute('data-bs-theme', 'light');
+                bodyElement.classList.remove('dark-mode'); // Hapus class dark-mode dari body
                 icon.classList.replace('fa-sun', 'fa-moon');
                 icon.classList.replace('text-warning', 'text-light');
             } else {
+                // Mode Gelap
                 htmlElement.setAttribute('data-bs-theme', 'dark');
+                bodyElement.classList.add('dark-mode'); // Tambahkan class dark-mode ke body
                 icon.classList.replace('fa-moon', 'fa-sun');
                 icon.classList.remove('text-light');
                 icon.classList.add('text-warning');
