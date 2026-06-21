@@ -1,8 +1,6 @@
-# core/sequence_utils.py
 from Bio import SeqIO
 import os
 import matplotlib
-# Menggunakan 'Agg' agar Matplotlib bisa berjalan di background Flask tanpa error GUI
 matplotlib.use('Agg') 
 import matplotlib.pyplot as plt
 
@@ -47,26 +45,21 @@ def generate_gc_plot(sequences_list):
     ids = [seq['id'] for seq in plot_data]
     gc_values = [seq['gc_content'] for seq in plot_data]
 
-    # Mengatur style grafik
     plt.figure(figsize=(10, 6), facecolor='#f4f7f6')
     ax = plt.axes()
     ax.set_facecolor('#f4f7f6')
 
-    # Membuat bar chart dengan warna hijau sains (teal)
     bars = plt.bar(ids, gc_values, color='#20c997', width=0.6, edgecolor='#128c6e', linewidth=1.5, zorder=3)
     
-    # Menambahkan angka di atas batang
     for bar in bars:
         yval = bar.get_height()
         plt.text(bar.get_x() + bar.get_width()/2, yval + 2, f'{yval}%', ha='center', va='bottom', fontsize=10, fontweight='bold', color='#2c3e50')
 
-    # Desain tipografi dan axis
     plt.title('Distribusi Kandungan GC (Top Kandidat)', fontsize=16, fontweight='bold', color='#2c3e50', pad=20)
     plt.xlabel('ID Sekuens', fontsize=12, fontweight='bold', color='#2c3e50', labelpad=15)
     plt.ylabel('Kandungan GC (%)', fontsize=12, fontweight='bold', color='#2c3e50', labelpad=15)
     plt.ylim(0, 115) 
     
-    # Mempercantik grid dan garis tepi
     plt.grid(axis='y', linestyle='--', alpha=0.7, zorder=0)
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
@@ -77,7 +70,7 @@ def generate_gc_plot(sequences_list):
     plt.tight_layout()
 
     plot_filename = 'gc_chart.png'
-    os.makedirs(os.path.join('static', 'plots'), exist_ok=True) # Pindahkan ke sini, HAPUS import os
+    os.makedirs(os.path.join('static', 'plots'), exist_ok=True)
     plot_path = os.path.join('static', 'plots', plot_filename)
     
     plt.savefig(plot_path, dpi=300) 
@@ -106,10 +99,7 @@ def generate_csv(sequences_list):
         
     df = pd.DataFrame(flat_data)
     
-    # --- PERBAIKAN DI FUNGSI generate_csv ---
     csv_filename = 'hasil_skrining_termofilik.csv'
-    
-    # Tambahkan ini agar folder uploads dibuat otomatis jika belum ada
     os.makedirs(os.path.join('static', 'uploads'), exist_ok=True) 
     
     csv_path = os.path.join('static', 'uploads', csv_filename)
