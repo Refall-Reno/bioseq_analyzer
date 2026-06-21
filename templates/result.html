@@ -48,13 +48,34 @@
             </div>
             <div class="ms-3">
                 <h5 class="fw-bold mb-2">Insight Biologis & Rekomendasi</h5>
-                <p class="mb-2 text-muted" style="font-size: 0.95rem; line-height: 1.6;">
-                    Berdasarkan analisis komposisi nukleotida, spesimen <strong class="text-success">{{ top_3[0].id }}</strong> terpilih sebagai kandidat utama mikroorganisme termofilik dengan stabilitas termal tertinggi (GC Content: <strong>{{ top_3[0].gc_content }}%</strong>). 
-                    Tingginya rasio Guanin-Sitosin (yang memiliki tiga ikatan hidrogen) mengindikasikan bahwa struktur DNA kandidat ini sangat kokoh dan tidak mudah terdenaturasi pada paparan suhu ekstrem.
-                </p>
-                <div class="mt-3 p-3 rounded shadow-sm border border-success border-opacity-25 bg-white" style="font-size: 0.9rem;">
-                    <strong class="text-primary"><i class="fa-solid fa-flask me-2"></i>Potensi Aplikasi Riset & Industri:</strong> DNA kandidat ini sangat ideal untuk dieksplorasi lebih lanjut guna memanen <strong>enzim termostabil</strong> (seperti <em>Taq Polymerase</em> untuk reagen uji PCR), agen bioremediasi limbah panas cair, atau katalis dalam produksi biofuel generasi baru.
-                </div>
+                
+                {% set best_gc = top_3[0].gc_content|float %}
+
+                {% if best_gc >= 60 %}
+                    <p class="mb-2 text-muted" style="font-size: 0.95rem; line-height: 1.6;">
+                        Berdasarkan analisis, spesimen <strong class="text-success">{{ top_3[0].id }}</strong> terpilih sebagai kandidat utama (GC Content: <strong>{{ best_gc }}%</strong>). Tingginya rasio Guanin-Sitosin (3 ikatan hidrogen) mengindikasikan struktur DNA yang sangat kokoh dan tidak mudah terdenaturasi pada suhu ekstrem.
+                    </p>
+                    <div class="mt-3 p-3 rounded shadow-sm border border-success border-opacity-25 bg-white" style="font-size: 0.9rem;">
+                        <strong class="text-success"><i class="fa-solid fa-fire text-danger me-2"></i>Kandidat Termofilik Kuat:</strong> Sangat ideal dieksplorasi untuk memanen enzim termostabil (seperti <em>Taq Polymerase</em>), bioremediasi limbah panas, atau aplikasi industri suhu tinggi.
+                    </div>
+
+                {% elif best_gc >= 40 %}
+                    <p class="mb-2 text-muted" style="font-size: 0.95rem; line-height: 1.6;">
+                        Spesimen terbaik <strong class="text-warning">{{ top_3[0].id }}</strong> memiliki GC Content sebesar <strong>{{ best_gc }}%</strong>. Angka ini berada di ambang batas moderat (mesofilik). DNA ini cukup stabil di suhu lingkungan normal, namun berisiko mengalami denaturasi jika dipapar suhu ekstrem.
+                    </p>
+                    <div class="mt-3 p-3 rounded shadow-sm border border-warning border-opacity-25 bg-white" style="font-size: 0.9rem;">
+                        <strong class="text-warning"><i class="fa-solid fa-temperature-half text-warning me-2"></i>Kandidat Mesofilik:</strong> Kurang direkomendasikan untuk industri bersuhu tinggi, namun masih sangat valid untuk aplikasi bioteknologi pada suhu ruang (misal: fermentasi standar).
+                    </div>
+
+                {% else %}
+                    <p class="mb-2 text-muted" style="font-size: 0.95rem; line-height: 1.6;">
+                        Spesimen terbaik <strong class="text-danger">{{ top_3[0].id }}</strong> hanya memiliki GC Content sebesar <strong>{{ best_gc }}%</strong> (dominan ikatan Adenin-Timin). Struktur DNA (AT-rich) ini sangat rentan "meleleh" (denaturasi) meskipun pada suhu yang tidak terlalu panas.
+                    </p>
+                    <div class="mt-3 p-3 rounded shadow-sm border border-danger border-opacity-25 bg-white" style="font-size: 0.9rem;">
+                        <strong class="text-danger"><i class="fa-solid fa-snowflake text-info me-2"></i>Tidak Direkomendasikan:</strong> Spesimen ini <strong>bukan</strong> bakteri termofilik. Kemungkinan besar ini adalah organisme psikrofilik (suka dingin) atau membutuhkan inang dengan suhu yang sangat spesifik.
+                    </div>
+                {% endif %}
+
             </div>
         </div>
     </div>
