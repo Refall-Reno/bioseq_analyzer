@@ -1,12 +1,19 @@
 :root {
     --primary-color: #11998e;
     --secondary-color: #38ef7d;
-    --dark-bg: #121619;
-    --dark-card: #1d2125;
+    --body-bg-light: #f4f7f6;
+    --body-text-light: #2c3e50; 
+    
+    --body-bg-dark: #121619; 
+    --body-text-dark: #e6edf3; 
+    --card-bg-dark: #1d2125; 
+    --border-dark: #3d444d;
 }
 
 body {
     transition: background-color 0.3s ease, color 0.3s ease;
+    background-color: var(--body-bg-light);
+    color: var(--body-text-light);
 }
 
 .btn-biotech {
@@ -18,7 +25,7 @@ body {
 
 .btn-biotech:hover {
     background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
-    color: white;
+    color: white !important;
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(17, 153, 142, 0.4);
 }
@@ -53,18 +60,18 @@ body {
     font-family: 'Courier New', Courier, monospace;
 }
 
-body.dark-mode, 
-[data-bs-theme="dark"] body {
-    background-color: var(--dark-bg) !important; 
-    color: #e6edf3 !important; 
+
+body.dark-mode {
+    background-color: var(--body-bg-dark) !important; 
+    color: var(--body-text-dark) !important; 
 }
 
 body.dark-mode .card, 
 body.dark-mode .list-group-item,
 body.dark-mode footer,
 [data-bs-theme="dark"] .card {
-    background-color: var(--dark-card) !important;
-    border-color: #3d444d !important;
+    background-color: var(--card-bg-dark) !important;
+    border-color: var(--border-dark) !important;
 }
 
 body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, 
@@ -73,7 +80,7 @@ body.dark-mode p, body.dark-mode li,
 body.dark-mode .text-secondary,
 body.dark-mode .text-muted,
 body.dark-mode .text-dark {
-    color: #e6edf3 !important;
+    color: var(--body-text-dark) !important;
 }
 
 body.dark-mode .upload-zone {
@@ -82,9 +89,10 @@ body.dark-mode .upload-zone {
 }
 
 body.dark-mode .bg-white {
-    background-color: var(--dark-card) !important;
+    background-color: var(--card-bg-dark) !important;
 }
 
 body.dark-mode .border-warning {
     border-color: rgba(255, 193, 7, 0.3) !important;
+    background-color: rgba(255, 193, 7, 0.05) !important;
 }
