@@ -60,7 +60,6 @@ body {
     font-family: 'Courier New', Courier, monospace;
 }
 
-
 body.dark-mode {
     background-color: var(--body-bg-dark) !important; 
     color: var(--body-text-dark) !important; 
@@ -95,4 +94,17 @@ body.dark-mode .bg-white {
 body.dark-mode .border-warning {
     border-color: rgba(255, 193, 7, 0.3) !important;
     background-color: rgba(255, 193, 7, 0.05) !important;
+}
+
+body.dark-mode .btn-biotech {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)) !important;
+    color: white !important;
+    border: none !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2) !important;
+}
+
+body.dark-mode .btn-biotech:hover {
+    background: linear-gradient(45deg, var(--secondary-color), var(--primary-color)) !important;
+    color: white !important;
+    box-shadow: 0 5px 15px rgba(56, 239, 125, 0.5) !important;
 }
